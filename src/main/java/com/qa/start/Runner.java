@@ -32,8 +32,14 @@ public class Runner {
 			answer = answer.substring(0, 3);
 
 			switch (answer) {
-			case "add", "sub", "mul", "div":
-				return answer;
+			case "add":
+				return "add";
+			case "sub":
+				return "subtract";
+			case "mul":
+				return "multiply";
+			case "div":
+				return "divide";
 			default:
 				System.out.println("\nPlease enter add, divide, subtract, or multiply\n");
 				break;
@@ -61,13 +67,13 @@ public class Runner {
 		case "add":
 			result = Calculator.add(x, y);
 			break;
-		case "div":
+		case "divide":
 			result = Calculator.divide(x, y);
 			break;
-		case "mul":
+		case "multiply":
 			result = Calculator.multiply(x, y);
 			break;
-		case "sub":
+		case "subtract":
 			result = Calculator.subtract(x, y);
 			break;
 		}
