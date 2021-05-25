@@ -29,7 +29,9 @@ public class Runner {
 			System.out.print("Enter your choice: ");
 			answer = s.nextLine();
 			answer = answer.replaceAll("\\s", "");
-			answer = answer.substring(0, 3);
+			
+			if(answer.length() > 3)
+				answer = answer.substring(0, 3);
 
 			switch (answer) {
 			case "add":
