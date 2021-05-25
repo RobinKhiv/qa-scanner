@@ -1,6 +1,10 @@
 package com.qa.start.calculator;
 
 public class Calculator {
+	//Create a project that has four methods; addition, 
+	//	subtraction, multiplication, and division:
+	//All of these methods should take two numbers as parameters.
+			
 	public static int add(int x, int y) {
 		return x+y;
 	}
