@@ -54,16 +54,17 @@ public class Runner {
 		return input;
 	}
 	public static double calcAnswer(String method, double x, double y) {
+		double result = 0d;
 		switch(method){
 			case "add":
-				return Calculator.add(x,y);
+				result = Calculator.add(x,y);
 			case "div":
-				return Calculator.divide(x,y);
+				result = Calculator.divide(x,y);
 			case "mul":
-				return Calculator.multiply(x,y);
+				result = Calculator.multiply(x,y);
 			case "sub":
-				return Calculator.subtract(x,y);
-				
+				result = Calculator.subtract(x,y);	
 		}
+		return result;
 	}
 }
