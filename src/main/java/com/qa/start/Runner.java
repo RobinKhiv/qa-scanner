@@ -1,5 +1,6 @@
 package com.qa.start;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.qa.start.calculator.Calculator;
@@ -29,8 +30,8 @@ public class Runner {
 			System.out.print("Enter your choice: ");
 			answer = s.nextLine();
 			answer = answer.replaceAll("\\s", "");
-			
-			if(answer.length() > 3)
+
+			if (answer.length() > 3)
 				answer = answer.substring(0, 3);
 
 			switch (answer) {
@@ -51,16 +52,16 @@ public class Runner {
 
 	public static double getUserDoubleInput(Scanner s) {
 		String question = "Please Enter a number: ";
-		double input = 0d;
 
-		System.out.print(question);
-		while (!s.hasNextDouble()) {
-			System.out.println("\nInvalid Input, please enter a number");
+		while (true) {
 			System.out.print(question);
-			s.nextLine();
+			try {
+				return s.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Input");
+				s.nextLine();
+			}
 		}
-		input = s.nextDouble();
-		return input;
 	}
 
 	public static double calcAnswer(String method, double x, double y) {
