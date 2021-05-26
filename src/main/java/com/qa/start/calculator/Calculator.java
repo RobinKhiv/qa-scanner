@@ -23,7 +23,7 @@ public class Calculator {
 	public static double multiply(double x, double y) {
 		return x*y;
 	}
-	public static double divide(double x, double y) {
+	public static double divide(double x, double y) throws ArithmeticException {
 		try {
 			if(y == 0d)
 				throw new ArithmeticException(); 	
@@ -31,8 +31,9 @@ public class Calculator {
 		} catch(ArithmeticException e) {
 			System.out.println("\nCannot divide by zero\n");
 			return 0d;
-		}
+		} 
 	}
+
 	public static int divide(int x, int y) {
 		try {
 			return x/y;
