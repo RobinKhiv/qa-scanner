@@ -16,8 +16,8 @@ public class Runner {
 		double input1 = getUserDoubleInput(scan);
 		double input2 = getUserDoubleInput(scan);
 		double answer = calcAnswer(calcMethod, input1, input2);
-		
-		if(calcMethod != "div" && input2 != 0)
+
+		if (calcMethod != "div" && input2 != 0)
 			System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
 
 		scan.close();
@@ -30,30 +30,34 @@ public class Runner {
 		while (true) {
 			System.out.println(question);
 			System.out.print("Enter your choice: ");
-			answer = s.nextLine();
-			answer = answer.replaceAll("\\s", "");
+			try {
+				answer = s.nextLine();
+				answer = answer.replaceAll("\\s", "");
+				
+				if (answer.length() > 3)
+					answer = answer.substring(0, 3);
 
-			if (answer.length() > 3)
-				answer = answer.substring(0, 3);
-
-			switch (answer) {
-			case "add":
-				return "add";
-			case "sub":
-				return "subtract";
-			case "mul":
-				return "multiply";
-			case "div":
-				return "divide";
-			default:
+				switch (answer) {
+				case "add":
+					return "add";
+				case "sub":
+					return "subtract";
+				case "mul":
+					return "multiply";
+				case "div":
+					return "divide";
+				default:
+					throw new InputMismatchException();
+				}
+				
+			} catch (InputMismatchException e) {
 				System.out.println("\nPlease enter add, divide, subtract, or multiply\n");
-				break;
 			}
 		}
 	}
 
 	private static double getUserDoubleInput(Scanner s) {
-		String question = "Please Enter a number: ";
+		String question = "\nPlease Enter a number: ";
 
 		while (true) {
 			System.out.print(question);
