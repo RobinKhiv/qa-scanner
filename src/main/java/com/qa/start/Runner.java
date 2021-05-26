@@ -21,11 +21,9 @@ public class Runner {
 
 			if (calcMethod != "div" && input2 != 0d)
 				System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
-		} finally {			
+		} finally {
 			scan.close();
 		}
-		
-
 	}
 
 	private static String getCalcMethod() {
@@ -38,7 +36,7 @@ public class Runner {
 			try {
 				answer = scan.nextLine();
 				answer = answer.replaceAll("\\s", "");
-				
+
 				if (answer.length() > 3)
 					answer = answer.substring(0, 3);
 
@@ -54,7 +52,6 @@ public class Runner {
 				default:
 					throw new InputMismatchException();
 				}
-				
 			} catch (InputMismatchException e) {
 				System.out.println("\nPlease enter add, divide, subtract, or multiply\n");
 			}
@@ -93,5 +90,4 @@ public class Runner {
 		}
 		return result;
 	}
-
 }

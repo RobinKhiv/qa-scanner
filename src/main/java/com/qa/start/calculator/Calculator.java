@@ -27,6 +27,7 @@ public class Calculator {
 		try {
 			if(y == 0d)
 				throw new ArithmeticException(); 
+			
 			return x/y;
 		} catch(ArithmeticException e) {
 			System.out.println("\nCannot divide by zero\n");
