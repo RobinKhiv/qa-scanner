@@ -16,12 +16,14 @@ public class Runner {
 		double input1 = getUserDoubleInput(scan);
 		double input2 = getUserDoubleInput(scan);
 		double answer = calcAnswer(calcMethod, input1, input2);
-		System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
+		
+		if(calcMethod != "div" && input2 != 0)
+			System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
 
 		scan.close();
 	}
 
-	public static String getCalcMethod(Scanner s) {
+	private static String getCalcMethod(Scanner s) {
 		String question = "Would you like to add, divide, subtract or divide?";
 		String answer = "";
 
@@ -50,7 +52,7 @@ public class Runner {
 		}
 	}
 
-	public static double getUserDoubleInput(Scanner s) {
+	private static double getUserDoubleInput(Scanner s) {
 		String question = "Please Enter a number: ";
 
 		while (true) {
@@ -64,7 +66,7 @@ public class Runner {
 		}
 	}
 
-	public static double calcAnswer(String method, double x, double y) {
+	private static double calcAnswer(String method, double x, double y) {
 		double result = 0d;
 		switch (method) {
 		case "add":
