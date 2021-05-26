@@ -26,12 +26,19 @@ public class Calculator {
 	public static double divide(double x, double y) {
 		try {
 			if(y == 0d)
-				throw new ArithmeticException(); 
-			
+				throw new ArithmeticException(); 	
 			return x/y;
 		} catch(ArithmeticException e) {
 			System.out.println("\nCannot divide by zero\n");
 			return 0d;
+		}
+	}
+	public static int divide(int x, int y) {
+		try {
+			return x/y;
+		} catch(ArithmeticException e) {
+			System.out.println("\nCannot divide by zero\n");
+			return 0;
 		}
 	}
 }
