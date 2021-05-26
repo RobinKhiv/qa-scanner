@@ -17,7 +17,7 @@ public class Runner {
 		double input2 = getUserDoubleInput(scan);
 		double answer = calcAnswer(calcMethod, input1, input2);
 
-		if (calcMethod != "div" && input2 != 0)
+		if (calcMethod != "div" && input2 != 0d)
 			System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
 
 		scan.close();
