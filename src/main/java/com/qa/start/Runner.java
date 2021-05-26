@@ -1,5 +1,6 @@
 package com.qa.start;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.qa.start.calculator.Calculator;
@@ -15,53 +16,61 @@ public class Runner {
 		double input1 = getUserDoubleInput(scan);
 		double input2 = getUserDoubleInput(scan);
 		double answer = calcAnswer(calcMethod, input1, input2);
-		System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
+
+		if (calcMethod != "div" && input2 != 0)
+			System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
 
 		scan.close();
 	}
 
-	public static String getCalcMethod(Scanner s) {
+	private static String getCalcMethod(Scanner s) {
 		String question = "Would you like to add, divide, subtract or divide?";
 		String answer = "";
 
 		while (true) {
 			System.out.println(question);
 			System.out.print("Enter your choice: ");
-			answer = s.nextLine();
-			answer = answer.replaceAll("\\s", "");
-			answer = answer.substring(0, 3);
+			try {
+				answer = s.nextLine();
+				answer = answer.replaceAll("\\s", "");
+				
+				if (answer.length() > 3)
+					answer = answer.substring(0, 3);
 
-			switch (answer) {
-			case "add":
-				return "add";
-			case "sub":
-				return "subtract";
-			case "mul":
-				return "multiply";
-			case "div":
-				return "divide";
-			default:
+				switch (answer) {
+				case "add":
+					return "add";
+				case "sub":
+					return "subtract";
+				case "mul":
+					return "multiply";
+				case "div":
+					return "divide";
+				default:
+					throw new InputMismatchException();
+				}
+				
+			} catch (InputMismatchException e) {
 				System.out.println("\nPlease enter add, divide, subtract, or multiply\n");
-				break;
 			}
 		}
 	}
 
-	public static double getUserDoubleInput(Scanner s) {
-		String question = "Please Enter a number: ";
-		double input = 0d;
+	private static double getUserDoubleInput(Scanner s) {
+		String question = "\nPlease Enter a number: ";
 
-		System.out.print(question);
-		while (!s.hasNextDouble()) {
-			System.out.println("\nInvalid Input, please enter a number");
+		while (true) {
 			System.out.print(question);
-			s.nextLine();
+			try {
+				return s.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Input");
+				s.nextLine();
+			}
 		}
-		input = s.nextDouble();
-		return input;
 	}
 
-	public static double calcAnswer(String method, double x, double y) {
+	private static double calcAnswer(String method, double x, double y) {
 		double result = 0d;
 		switch (method) {
 		case "add":
