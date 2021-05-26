@@ -7,23 +7,28 @@ import com.qa.start.calculator.Calculator;
 
 public class Runner {
 
+	public static Scanner scan = new Scanner(System.in);
+
 	public static void main(String[] args) {
 		// Create a menu to ask the user which of the four methods
 		// they wish to use, then take the numbers as user input
 		// for the operation and output the result back to the user.
-		Scanner scan = new Scanner(System.in);
-		String calcMethod = getCalcMethod(scan);
-		double input1 = getUserDoubleInput(scan);
-		double input2 = getUserDoubleInput(scan);
-		double answer = calcAnswer(calcMethod, input1, input2);
+		try {
+			String calcMethod = getCalcMethod();
+			double input1 = getUserDoubleInput();
+			double input2 = getUserDoubleInput();
+			double answer = calcAnswer(calcMethod, input1, input2);
 
-		if (calcMethod != "div" && input2 != 0d)
-			System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
+			if (calcMethod != "div" && input2 != 0d)
+				System.out.println(input1 + " " + calcMethod + " " + input2 + " equals " + answer);
+		} finally {			
+			scan.close();
+		}
+		
 
-		scan.close();
 	}
 
-	private static String getCalcMethod(Scanner s) {
+	private static String getCalcMethod() {
 		String question = "Would you like to add, divide, subtract or divide?";
 		String answer = "";
 
@@ -31,7 +36,7 @@ public class Runner {
 			System.out.println(question);
 			System.out.print("Enter your choice: ");
 			try {
-				answer = s.nextLine();
+				answer = scan.nextLine();
 				answer = answer.replaceAll("\\s", "");
 				
 				if (answer.length() > 3)
@@ -56,16 +61,16 @@ public class Runner {
 		}
 	}
 
-	private static double getUserDoubleInput(Scanner s) {
+	private static double getUserDoubleInput() {
 		String question = "\nPlease Enter a number: ";
 
 		while (true) {
 			System.out.print(question);
 			try {
-				return s.nextDouble();
+				return scan.nextDouble();
 			} catch (InputMismatchException e) {
 				System.out.println("\nInvalid Input");
-				s.nextLine();
+				scan.nextLine();
 			}
 		}
 	}
